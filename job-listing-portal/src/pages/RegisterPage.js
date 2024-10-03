@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import '../styles/AuthPage.css'; // Import the styles
 
-const RegisterPage = ({ onRegister }) => {
+const RegisterPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -9,7 +9,9 @@ const RegisterPage = ({ onRegister }) => {
   const [role, setRole] = useState('jobSeeker'); // Default role is Job Seeker
   const [error, setError] = useState('');
 
-  const handleRegister = (e) => {
+  const apiUrl = process.env.REACT_APP_API_URL;
+
+  const handleRegister = async (e) => {
     e.preventDefault();
     if (password !== confirmPassword) {
       setError('Passwords do not match');
@@ -17,7 +19,17 @@ const RegisterPage = ({ onRegister }) => {
     }
     setError(''); // Clear any previous errors
     // Handle registration logic
-    onRegister();
+    // onRegister();
+
+    const url = `${apiUrl}/users/register`;
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ email, password, name, role })
+    });
+    const data = await response.json();
   };
 
   return (

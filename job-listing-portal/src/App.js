@@ -23,7 +23,6 @@ import ManageJobPage from './pages/employer/ManageJobPage.jsx';
 // import Modal from './components/Modal.js';
 
 function App() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   return (
     <AuthProvider>
@@ -45,7 +44,7 @@ function App() {
             {/* <Route path="/login" element={<LoginPage onLogin={() => setIsAuthenticated(true)} />} /> */}
             <Route path="/login" element={<LoginPage />} />
             <Route path="/login/success" element={<SuccessPage />} />
-            <Route path="/register" element={<RegisterPage onRegister={() => setIsAuthenticated(true)} />} />
+            <Route path="/register" element={<RegisterPage />} />
             <Route path="/forgot-password" element={<ForgotPasswordPage />} />
             <Route path="/verify-code" element={<VerifyCodePage />} />
             <Route path="/reset-password" element={<ResetPasswordPage />} />
